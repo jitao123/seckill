@@ -24,7 +24,21 @@ spring:
       connection-timeout: 30000
       #      测试链接是否可以用
       connection-test-query: SELECT 1
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    #    默认第0个库
+    database: 0
+    #    超时
+    timeout: 10000ms
+    lettuce:
+      pool:
+        #        默认最大链接数
+        max-active: 8
+        #         默认最大链接等待时间 -1
+        max-wait: 10000ms
+        #        最小空闲 默认0
+        min-idle: 5
 
 mybatis-plus:
   #  xml文件位置

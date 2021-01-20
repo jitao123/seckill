@@ -19,9 +19,10 @@ public enum RespBeanEnum {
     ERROR(500, "服务器异常"),
 
     //    通用
-    LOGIN_ERROR(500210, "用户名或者密码不能为空"),
+    LOGIN_ERROR(500210, "用户名或者密码错误"),
 
-    MOBILE_ERROR(500211,"手机号不能为空或者格式不正确");
+    MOBILE_ERROR(500211, "手机号不能为空或者格式不正确"),
+    BIND_ERROR(500211, "参数校验异常");
 
     private int code;
     private String msg;

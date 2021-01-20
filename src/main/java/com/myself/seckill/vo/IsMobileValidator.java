@@ -1,6 +1,7 @@
 package com.myself.seckill.vo;
 
 import cn.hutool.core.util.ReUtil;
+import com.myself.seckill.utils.ValidatorUtil;
 import com.myself.seckill.validator.IsMobile;
 import org.apache.commons.lang3.StringUtils;
 
@@ -14,7 +15,6 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class IsMobileValidator implements ConstraintValidator<IsMobile, String> {
 
-
     private boolean required = false;
 
     @Override
@@ -25,13 +25,12 @@ public class IsMobileValidator implements ConstraintValidator<IsMobile, String> 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         if (required) {
-            return ReUtil.isMatch("/^1[345678]\\d{9}$/",value);
-
-        }else {
+            return ValidatorUtil.isMobile(value);
+        } else {
             if (StringUtils.isEmpty(value)) {
-                return  true;
-            }else {
-                return ReUtil.isMatch("/^1[345678]\\d{9}$/",value);
+                return true;
+            } else {
+                return ValidatorUtil.isMobile(value);
             }
         }
     }

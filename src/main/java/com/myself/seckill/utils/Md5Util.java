@@ -36,12 +36,12 @@ public class Md5Util {
 
     public static void main(String[] args) {
         //        ce21b747de5af71ab5c2e20ff0a60eea
-        System.out.println(" ～～～～～～～"+inputPassToFromPass("123456"));
+        System.out.println(" ～～～inputPassToFromPass～～～～"+inputPassToFromPass("123456"));
 //        0687f9701bca74827fcefcd7e743d179
         String str = fromPassToDBpass("ce21b747de5af71ab5c2e20ff0a60eea", "1a2b3c4d");
-        System.out.println("～～～～～～"+str);
+        System.out.println("～～～fromPassToDBpass～～～"+str);
 //        0687f9701bca74827fcefcd7e743d179
         String dBpass = inputPassToDBpass("123456", "1a2b3c4d");
-        System.out.println("～～～～～～"+dBpass);
+        System.out.println("～～～inputPassToDBpass～～～"+dBpass);
     }
 }

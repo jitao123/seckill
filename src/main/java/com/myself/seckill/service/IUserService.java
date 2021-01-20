@@ -6,6 +6,9 @@ import com.myself.seckill.entity.User;
 import com.myself.seckill.vo.LoginVo;
 import com.myself.seckill.vo.RespBean;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * <p>
  *  服务类
@@ -16,5 +19,5 @@ import com.myself.seckill.vo.RespBean;
  */
 public interface IUserService extends IService<User> {
 
-    RespBean doLogin(LoginVo loginVo);
+    RespBean doLogin(LoginVo loginVo, HttpServletRequest request,HttpServletResponse response)throws Exception ;
 }
