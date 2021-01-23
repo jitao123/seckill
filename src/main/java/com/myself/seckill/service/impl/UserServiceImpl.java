@@ -1,6 +1,5 @@
 package com.myself.seckill.service.impl;
 
-import cn.hutool.core.lang.generator.UUIDGenerator;
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.myself.seckill.entity.User;
@@ -12,6 +11,10 @@ import com.myself.seckill.utils.Md5Util;
 import com.myself.seckill.vo.LoginVo;
 import com.myself.seckill.vo.RespBean;
 import com.myself.seckill.vo.RespBeanEnum;
+import io.netty.util.Timeout;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +22,8 @@ import org.springframework.validation.annotation.Validated;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 /**
  * <p>
@@ -31,6 +36,9 @@ import javax.validation.Valid;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Override
     public RespBean doLogin(LoginVo loginVo, HttpServletRequest request, HttpServletResponse response) throws Exception {
         User user = this.baseMapper.selectById(loginVo.getMobile());
@@ -42,11 +50,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
 //        设置 uuid
         String ticket = IdUtil.simpleUUID();
-        request.getSession().setAttribute(ticket, user);
+//        request.getSession().setAttribute(ticket, user);
+//      将用户信息存放在redis 里面
+
+        redisTemplate.opsForValue().set("user:"+ticket , user);
         // 设置cookie
         CookieUtil.setCookie(request, response, "userTicket", ticket);
 
-
         return RespBean.success();
+    }
+
+    @Override
+    public User getUserByCookie(String ticket,HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        if (StringUtils.isEmpty(ticket)) {
+            return null;
+        }
+        User user = (User) redisTemplate.opsForValue().get("user:" + ticket);
+        if (!ObjectUtils.isEmpty(user)) {
+            CookieUtil.setCookie(request, response, "userTicket", ticket);
+        }
+//        收货地址  delivery_addr_id
+        return user;
     }
 }

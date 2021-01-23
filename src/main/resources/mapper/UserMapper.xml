@@ -2,5 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myself.seckill.mapper.UserMapper">
 
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.myself.seckill.entity.User">
+        <id column="id" property="id" />
+        <result column="nickname" property="nickname" />
+        <result column="password" property="password" />
+        <result column="slat" property="slat" />
+        <result column="hand" property="hand" />
+        <result column="register_date" property="registerDate" />
+        <result column="last_login_date" property="lastLoginDate" />
+        <result column="log_count" property="logCount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, nickname, password, slat, hand, register_date, last_login_date, log_count
+    </sql>
 
 </mapper>

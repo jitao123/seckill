@@ -20,4 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface IUserService extends IService<User> {
 
     RespBean doLogin(LoginVo loginVo, HttpServletRequest request,HttpServletResponse response)throws Exception ;
+
+
+    User getUserByCookie(String ticket,HttpServletRequest request,HttpServletResponse response) throws Exception;
 }

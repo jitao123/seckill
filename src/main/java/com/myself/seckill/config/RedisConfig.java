@@ -35,9 +35,8 @@ public class RedisConfig {
          * hash value 序列化
          */
         redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        
 
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        return null;
+        return redisTemplate;
     }
 }
