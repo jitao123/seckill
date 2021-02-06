@@ -20,7 +20,7 @@ public class RedisConfig {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 
         /**
-         * key 序列化
+         * key 序列化 定时任务
          */
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         /**

@@ -1,6 +1,7 @@
 package com.myself.seckill.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.myself.seckill.entity.Goods;
 import com.myself.seckill.entity.Order;
 
 /**
@@ -13,4 +14,9 @@ import com.myself.seckill.entity.Order;
  */
 public interface IOrderService extends IService<Order> {
 
+    /**
+     * 创建订单
+     * @param goods
+     */
+    void createOrder(Goods goods);
 }

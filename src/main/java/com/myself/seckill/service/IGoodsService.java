@@ -21,4 +21,20 @@ public interface IGoodsService extends IService<Goods> {
      * @return
      */
     List<GoodsVo> findGoodsVo();
+
+    /**
+     * 通过 goodsId 获取 GoodsVo
+     * @param goodsId
+     * @return
+     */
+    GoodsVo findGoodsVoById(Long goodsId);
+
+    /**
+     * 通过商品ID 获取 Goods 检测是否超出库存
+     * @param goodsId
+     * @return
+     */
+    Goods checkGoodsStock(int goodsId)throws Exception;
+
+    int updateGoods(Goods goods);
 }

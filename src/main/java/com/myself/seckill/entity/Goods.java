@@ -60,5 +60,17 @@ public class Goods implements Serializable {
      */
     private Integer goodsStock;
 
+    /**
+     * 销售数量 Sales volume
+     */
+    private Integer salesNumber;
+
+    /**
+     * 悲观锁 利用数据库的锁来控制并发
+     */
+    private Integer goodsVersions;
+
+
+
 
 }

@@ -17,6 +17,11 @@
     <sql id="Base_Column_List">
         id, goods_name, goods_title, goods_img, goods_detail, goods_price, goods_stock
     </sql>
+
+    <update id="updateByVersion" parameterType="com.myself.seckill.entity.Goods">
+     update t_goods set sales_number = #{salesNumber}+1 , goods_versions = #{goodsVersions}+1 where id=#{id} and goods_versions = #{goodsVersions};
+    </update>
+
     <select id="findGoodsVo" resultType="com.myself.seckill.vo.GoodsVo">
         SELECT
             g.*,
@@ -27,6 +32,18 @@
         FROM
             t_goods g
             LEFT JOIN t_seckill_goods AS sg ON g.id = sg.goods_id
+    </select>
+    <select id="findGoodsVoById" resultType="com.myself.seckill.vo.GoodsVo">
+        SELECT
+            g.*,
+            sg.seckill_price,
+            sg.stock_count,
+            sg.start_date,
+            sg.end_date
+        FROM
+            t_goods g
+            LEFT JOIN t_seckill_goods AS sg ON g.id = sg.goods_id
+        where id=#{goodsId}
     </select>
 
 </mapper>

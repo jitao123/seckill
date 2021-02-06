@@ -21,7 +21,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+@Accessors(chain = true)  // 开启链式调用的注解
 @TableName("t_user")
 public class User extends Model<User> {
 
