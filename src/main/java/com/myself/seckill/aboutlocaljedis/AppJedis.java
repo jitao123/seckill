@@ -1,10 +1,7 @@
 package com.myself.seckill.aboutlocaljedis;
 
-import cn.hutool.core.util.StrUtil;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +22,8 @@ public class AppJedis {
             new LinkedBlockingDeque<>());
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("localhost",6379);
+        String localhost = "localhost";
+        Jedis jedis = new Jedis(localhost,6379);
         //默认选择第一个数据库
         jedis.select(1);
         // 设置总数 50个

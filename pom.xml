@@ -124,6 +124,11 @@
             <artifactId>jedis</artifactId>
             <version>4.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.8.1</version>
+        </dependency>
 
     </dependencies>
 
