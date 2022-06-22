@@ -19,4 +19,10 @@ public interface IOrderService extends IService<Order> {
      * @param goods
      */
     void createOrder(Goods goods);
+
+    /**
+     * 测试aop
+     * @return
+     */
+    Order resultOrder();
 }

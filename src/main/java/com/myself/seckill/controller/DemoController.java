@@ -1,11 +1,7 @@
 package com.myself.seckill.controller;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import com.google.common.util.concurrent.RateLimiter;
 import com.myself.seckill.entity.Goods;
-import com.myself.seckill.entity.Order;
 import com.myself.seckill.exception.BusinessException;
 import com.myself.seckill.service.IGoodsService;
 import com.myself.seckill.service.IOrderService;
@@ -13,21 +9,16 @@ import com.myself.seckill.utils.Md5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * @description:
- * @author: AT
- * @Date: 2021/1/18 3:46 下午
+ * @author: ATCo @Date: 2021/1/18 3:46 下午
  */
 @RestController
 @RequestMapping("/index")

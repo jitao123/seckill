@@ -129,6 +129,13 @@
             <artifactId>ehcache</artifactId>
             <version>3.8.1</version>
         </dependency>
+<!--        添加 aop 的依赖-->
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId> aspectjweaver</artifactId>
+            <version>1.9.7</version>
+        </dependency>
 
     </dependencies>
 

@@ -19,4 +19,13 @@
         id, nickname, password, slat, hand, register_date, last_login_date, log_count
     </sql>
 
+    <resultMap id="counts" type="java.lang.Integer">
+        <result column="count" javaType="Integer" jdbcType="INTEGER"></result>
+    </resultMap>
+    <select id="queryPage" resultMap="BaseResultMap,counts">
+        select SQL_CALC_FOUND_ROWS * from User ${ew.customSqlSegment}
+         limit #{pageNo},#{pageSize};
+        select FOUND_ROWS() as count;
+    </select>
+
 </mapper>

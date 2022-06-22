@@ -1,6 +1,7 @@
 package com.myself.seckill.service;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.myself.seckill.entity.User;
 import com.myself.seckill.vo.LoginVo;
@@ -23,4 +24,13 @@ public interface IUserService extends IService<User> {
 
 
     User getUserByCookie(String ticket,HttpServletRequest request,HttpServletResponse response) throws Exception;
+
+    /**
+     * 分页查询user
+     * @param pageNo
+     * @param pageSize
+     * @param userName
+     * @return
+     */
+    Page<User> queryPage(int pageNo, int pageSize,String userName);
 }

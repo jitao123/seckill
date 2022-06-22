@@ -7,6 +7,7 @@ import com.myself.seckill.mapper.OrderMapper;
 import com.myself.seckill.service.IOrderService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -38,5 +39,25 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setCreateDate(LocalDateTime.now());
         order.setPayDate(LocalDateTime.now());
         this.baseMapper.insert(order);
+    }
+
+    /**
+     * 测试aop
+     *
+     * @return
+     */
+    @Override
+    public Order resultOrder() {
+        Order order = new Order();
+        order.setGoodsId(1L);
+        order.setDeliveryAddrId(0L);
+        order.setGoodsName("test");
+        order.setGoodsCount(1);
+        order.setGoodsPrice(new BigDecimal("11.01"));
+        order.setOrderChannel(1);
+        order.setStatus(1);
+        order.setCreateDate(LocalDateTime.now());
+        order.setPayDate(LocalDateTime.now());
+        return order;
     }
 }

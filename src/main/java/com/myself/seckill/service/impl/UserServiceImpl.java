@@ -1,6 +1,8 @@
 package com.myself.seckill.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.myself.seckill.entity.User;
 import com.myself.seckill.exception.GlobalException;
@@ -11,19 +13,16 @@ import com.myself.seckill.utils.Md5Util;
 import com.myself.seckill.vo.LoginVo;
 import com.myself.seckill.vo.RespBean;
 import com.myself.seckill.vo.RespBeanEnum;
-import io.netty.util.Timeout;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
-import org.springframework.validation.annotation.Validated;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.util.Calendar;
-import java.util.TimeZone;
+import java.util.List;
 
 /**
  * <p>
@@ -74,5 +73,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 
         return user;
+    }
+
+    /**
+     * 分页查询user
+     *
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Page<User> queryPage(int pageNo, int pageSize,String userName) {
+        Page<User> page = new Page<>(pageNo,pageSize);
+        // 根据需求自定义查询条件
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().like(StringUtils.isNotEmpty(userName),User::getNickname,userName);
+        List list= this.baseMapper.queryPage(queryWrapper,(pageNo-1)*pageSize,pageSize);
+        if (!CollectionUtils.isEmpty(list)) {
+            List<User> users = (List<User>) list.get(0);
+            List<Integer> integers = (List<Integer>) list.get(1);
+            page.setRecords(users);
+            page.setTotal(integers.get(0));
+        }
+        return page;
     }
 }
