@@ -18,7 +18,6 @@ import java.math.BigDecimal;
  * @since 2021-01-23
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @TableName("t_goods")
 public class Goods implements Serializable {
 

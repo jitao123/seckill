@@ -133,9 +133,14 @@
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
-            <artifactId> aspectjweaver</artifactId>
+            <artifactId>aspectjweaver</artifactId>
             <version>1.9.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
 
     </dependencies>
 

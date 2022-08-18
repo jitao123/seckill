@@ -42,7 +42,6 @@ spring:
         max-wait: 10000ms
         #        最小空闲 默认0
         min-idle: 5
-
 mybatis-plus:
   #  xml文件位置
   mapper-locations: classpath*:/mapper/*Mapper.xml
@@ -53,3 +52,37 @@ mybatis-plus:
 logging:
   level:
     com.myself.seckill.mapper: debug
+# 显示所有的健康检查 资源
+management:
+  endpoint:
+    health:
+      show-details: always
+# 开启所有的默认检查配置
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        # 如果只想打开几个配置 那么编写需要打开的配置的名字，用逗号分割 env,info
+#        include: env,info
+
+info.s: y
+info.test: myTest
+#定义项目相关信息
+info.app-Name: Seckill
+info.author: AT
+info.email: 1234567@qq.com
+#使用 连字符 分割配置文件
+---
+spring:
+  profiles:
+    active: dev
+server:
+  tomcat:
+    max-connections: 100
+---
+spring:
+  profiles:
+    active: prod
+server:
+  tomcat:
+    max-connections: 200
