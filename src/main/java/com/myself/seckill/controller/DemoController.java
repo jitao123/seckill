@@ -103,7 +103,6 @@ public class DemoController {
     // 限制时间内访问 验证用户信息 VerifyUserInformation
     @RequestMapping("/limitedTimeAndVerifyUserInformationAccess")
     public String limitedTimeAndVerifyUserInformationAccess(@RequestParam("goodsId") int goodsId, @RequestParam("userId") int userId, @RequestParam("md5") String md5) throws Exception {
-
         // 使用定时器，在每天的几点到几点内，将 kill_ID +商品ID 存入到redis，并设置过期时间
         if (!redisTemplate.hasKey("kill_id" + goodsId)) {
             throw new BusinessException(" 不在抢购时间内～～～～");
